@@ -51,6 +51,14 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   var wrapper   = document.createElement("div");
   var inner     = document.createElement("div");
+  inner.onclick = function() {
+    var value = prompt("Please enter value", `${tile.value}`);
+    if (value != null) {
+      tile.value = value;
+      inner.textContext = value;
+      window.game_manager.grid.cells[tile.x][tile.y].value = parseInt(value);
+    }
+  }
   var position  = tile.previousPosition || { x: tile.x, y: tile.y };
   var positionClass = this.positionClass(position);
 
